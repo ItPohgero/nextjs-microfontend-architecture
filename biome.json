@@ -7,11 +7,12 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["node_modules", ".turbo"]
+		"ignore": ["node_modules", ".turbo", "apps"]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"ignore": ["node_modules", ".turbo", "apps"]
 	},
 	"organizeImports": {
 		"enabled": true
@@ -20,7 +21,8 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true
-		}
+		},
+		"ignore": ["node_modules", ".turbo", "apps"]
 	},
 	"javascript": {
 		"formatter": {
