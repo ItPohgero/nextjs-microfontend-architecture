@@ -1,24 +1,23 @@
 import type { NextConfig } from "next";
 
-const DOCS_URL = 'http://localhost:8001';  // docs app is running here
+const apps = [
+	{ name: 'docs', url: 'http://localhost:8001', prefix: '/docs' },
+	{ name: 'articles', url: 'http://localhost:8002', prefix: '/articles' },
+];
+
+const createRewrites = (apps: { name: string, url: string, prefix: string }[]) => {
+	return apps.flatMap(app => [
+		{ source: `${app.prefix}`, destination: `${app.url}${app.prefix}` },
+		{ source: `${app.prefix}/:path*`, destination: `${app.url}${app.prefix}/:path*` },
+	]);
+};
+
 const nextConfig: NextConfig = {
 	assetPrefix: '/docs-static',
+
 	async rewrites() {
-		return [
-			{
-				source: '/docs',
-				destination: `${DOCS_URL}/docs`,  // This should correctly route the /docs path
-			},
-			{
-				source: '/docs/:path*',
-				destination: `${DOCS_URL}/docs/:path*`,  // Ensure the path is passed correctly
-			},
-			{
-				source: '/docs-static/:path*',
-				destination: `${DOCS_URL}/docs-static/:path*`,  // Static files must be accessible from this path
-			},
-		]
+		return createRewrites(apps);
 	},
 };
 
-export default nextConfig;
+export default nextConfig
