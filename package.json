@@ -1,36 +1,39 @@
 {
-  "name": "next-microfrontend",
-  "module": "index.ts",
-  "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "build:main": "turbo run build --filter=main...",
-    "build:docs": "turbo run build --filter=docs...",
-    "changeset": "changeset",
-    "clean": "turbo run clean && rm -rf node_modules",
-    "dev": "turbo run dev",
-    "format": "prettier --write .",
-    "lint": "turbo run lint",
-    "release": "turbo run build --filter=main... && changeset publish",
-    "type-check": "turbo run type-check",
-    "start": "turbo run start",
-    "version-packages": "changeset version"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@changesets/cli": "^2.27.9",
-    "turbo": "^2.3.0"
-  },
-  "engines": {
-    "bun": "1.1.33"
-  }
+	"name": "next-microfrontend",
+	"module": "index.ts",
+	"type": "module",
+	"workspaces": ["apps/*", "packages/*"],
+	"scripts": {
+		"build": "turbo run build",
+		"build:main": "turbo run build --filter=main...",
+		"build:docs": "turbo run build --filter=docs...",
+		"changeset": "changeset",
+		"clean": "turbo run clean && rm -rf node_modules",
+		"dev": "turbo run dev",
+		"format": "prettier --write .",
+		"lint": "turbo run lint",
+		"release": "turbo run build --filter=main... && changeset publish",
+		"type-check": "turbo run type-check",
+		"start": "turbo run start",
+		"version-packages": "changeset version",
+		"biome": "bunx run-s biome:*",
+		"biome:lint": "bunx @biomejs/biome lint --write .",
+		"biome:check": "bunx @biomejs/biome check --write .",
+		"biome:format": "bunx @biomejs/biome format --write ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "latest",
+		"npm-run-all": "^4.1.5"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@changesets/cli": "^2.27.9",
+		"turbo": "^2.3.0"
+	},
+	"engines": {
+		"bun": "1.1.33"
+	}
 }

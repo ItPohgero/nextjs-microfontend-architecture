@@ -176,3 +176,5 @@ dist
 
 # Turborepo
 .turbo
+
+.git.ts
