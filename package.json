@@ -2,7 +2,7 @@
 	"name": "next-microfrontend",
 	"module": "index.ts",
 	"type": "module",
-	"workspaces": ["apps/*", "packages/*"],
+	"workspaces": ["apps/*"],
 	"scripts": {
 		"build": "turbo run build",
 		"build:main": "turbo run build --filter=main...",
