@@ -9,15 +9,19 @@ const createRewrites = (apps: { name: string, url: string, prefix: string }[]) =
 	return apps.flatMap(app => [
 		{ source: `${app.prefix}`, destination: `${app.url}${app.prefix}` },
 		{ source: `${app.prefix}/:path*`, destination: `${app.url}${app.prefix}/:path*` },
+		{ source: `/static/:path*`, destination: `${app.url}/static/:path*` }, // Ensure correct static asset routing
 	]);
 };
 
 const nextConfig: NextConfig = {
-	assetPrefix: '/docs-static',
-
+	assetPrefix: '',
+	experimental: {
+		turbo: {},
+	},
 	async rewrites() {
 		return createRewrites(apps);
 	},
+	staticPageGenerationTimeout: 60,
 };
 
-export default nextConfig
+export default nextConfig;
